@@ -1,0 +1,56 @@
+body {
+  padding: 50px;
+  background-image: url("../images/concert-crowd.jpg");
+  background-size: cover;
+  margin: 0px;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+.seatR {
+  background-color: white;
+}
+
+.seatS {
+    background-color: lightgray;
+}
+
+.seatA {
+    background-color: gray;
+}
+
+.seatB {
+    background-color: #464646;
+}
+
+.reserved {
+  background-color: orange;
+}
+
+.box {
+  width:15px;
+  height: 15px;
+  float:left;
+  margin: 5px;
+}
+
+.box:hover {
+    background-color: yellow;
+ }
+
+#singer {
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+#stadium {
+    width: 500px;
+    display:block;
+    margin: 0 auto;
+}

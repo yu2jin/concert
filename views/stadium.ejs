@@ -1,0 +1,28 @@
+<div id="stadium">
+<%
+  var column = 20, row = 12; min = 4, max = column - 3;
+  var id = 1, seatClass = ["R", "S", "A", "B"], seatClassIndex = 1, specialSeatNumber = 1, normalSeatNumber = 1;
+  var sc, sn;
+  for(var i=1; i <=row; i++) {
+    for(var j=1; j<=column; j++) {
+      if(j > min && j < max) {
+        sc = seatClass[0], sn = sc + specialSeatNumber;
+        specialSeatNumber++;
+      } else {
+        sc = seatClass[seatClassIndex], sn = sc + normalSeatNumber;
+        normalSeatNumber++;
+      }
+%>
+  <div class = "box seat<%=sc%>" data-id = "<%=id%>" data-reserved = "<%=reserved[id - 1] == undefined ? 0 : reserved[id - 1]['RESERVATED']%>" data-seat ="<%=sn%>"></div>
+<%
+      id++;
+    }
+    if(i % 4 == 0) {
+      seatClassIndex++;
+      normalSeatNumber = 1;
+    }
+    min++;
+    max--;
+  }
+%>
+</div>

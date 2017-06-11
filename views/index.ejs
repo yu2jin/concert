@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>콘서트 예매 시스템</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<img src="/images/maroon5.jpg" alt="MAROON 5" id="singer"/>
+<%include stadium%>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#stadium>div').click(function (e) {
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+        var resv = $(this).attr("data-reserved");
+        $.ajax({
+            type:"POST" ,
+            data: {"id" : $(this).attr("data-id")},
+            dataType : "html",
+            url : "/isReserved" ,
+            success: function(html) {
+                $(location).attr('href', "/reserve?id=" + id);
+            },
+            error: function(request,status,error){
+                alert("이미 예약된 좌석입니다. 취소하시겠습니까?");
+                $(location).attr('href', "/cancel?id=" + id);
+            }
+        });
+        if ($(this).attr("data-reserved") == "1")
+            $(this).addClass("reserved");
+    });
+});
+
+</script>
+</body>
+</html>

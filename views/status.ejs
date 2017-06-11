@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>예매 현황</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><font color="#6495ed"> 예매 현황 </font></h1>
+<a href="/">메인으로 돌아가기</a><br/>
+
+<% for(var prop in data[0]) {%>
+<%}%>
+<br/><font color="red">
+<table style="border: 1px solid white">
+    <tr>
+        <td>좌석</td>
+        <td>이름</td>
+        <td>전화번호</td>
+        <td>금액</td>
+    </tr>
+    <%var resvseat=0;
+    var total = 0;
+    for(var i=0; i<data.length; i++) {%>
+    <tr>
+        <td><%=data[i]["SEAT"]%></td>
+        <td><%=data[i]["NAME"]%></td>
+        <td><%=data[i]["PHONE"]%></td>
+        <td>
+            <%var grade = data[i]["SEAT"].substring(0, 1);
+                var price;
+                switch (grade) {
+                    case 'R':
+                        price = 130000;
+                        break;
+                    case 'S':
+                        price = 120000;
+                        break;
+                    case 'A':
+                        price = 110000;
+                        break;
+                    case 'B':
+                        price = 100000;
+                        break;
+                }
+                total += price;
+                resvseat++;
+            %>
+            <%=price%>
+        </td>
+    </tr>
+    <%
+    }
+    %>
+</table>
+    <tr>
+        <td>
+            예약된 좌석 전체 금액 : <%=total%>원<br>
+        </td>
+        <td>
+            예약률 : <%=resvseat/240*100%>%
+        </td>
+    </tr>
+</font>
+</body>
+</html>
